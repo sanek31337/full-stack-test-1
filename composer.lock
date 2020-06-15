@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6558f74828bca9ebecac73d90cea4b1a",
+    "content-hash": "0076dd8cc29d03fafcefd78b77e998ab",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -363,6 +363,45 @@
                 "schedule"
             ],
             "time": "2019-03-31T00:38:28+00:00"
+        },
+        {
+            "name": "eastwest/json",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jannejava/json.git",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jannejava/json/zipball/d08982d1849b1e6f5e67768484a703bcd3c463b9",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eastwest\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Östlund",
+                    "email": "janne@eastwest.se"
+                }
+            ],
+            "description": "Wrap JSON encoding/decoding errors in exception",
+            "time": "2018-06-14T10:10:59+00:00"
         },
         {
             "name": "egulias/email-validator",
