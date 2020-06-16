@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
+import Vuetify from 'vuetify/dist/vuetify.min';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
