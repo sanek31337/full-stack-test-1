@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/articles-list', function(Request $request){
+
+    $searchPhrase = $request->get('searchPhrase');
+    $categoriesParam = $request->get('categories');
+    $categories = null;
+
+    if ($categoriesParam !== null)
+    {
+        $categories = explode(',', $categoriesParam);
+    }
+
+    $articles = \App\Article::whereHas(
+        'categories', function($query) use ($categories){
+        /** @var \Illuminate\Database\Query\Builder $query */
+        $query->when($categories, function($query, $categories){
+            $query->whereIn('name', $categories);
+        });
+    })
+        ->with(['categories', 'images'])
+        ->when($searchPhrase, function($query, $searchPhrase){
+            /** @var \Illuminate\Database\Query\Builder $query */
+            return $query->where(function($query) use ($searchPhrase){
+                $query->where('title', 'like', '%' . $searchPhrase . '%');
+            });
+        })->get();
+
+    return $articles->toJson();
+});
+
+Route::get('/categories-list', function (Request $request) {
+
+    $categories = DB::table('category')
+        ->distinct('name')
+        ->get();
+
+    return $categories->map(function ($name) {
+        return $name->name;
+    })
+        ->duplicates()
+        ->values()
+        ->toJson();
 });
