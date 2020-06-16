@@ -68,3 +68,18 @@ Please answer the following questions in a markdown file called <code>Answers to
 - How long did you spend on the coding test? What would you add to your solution if you had more time? If you didn't spend much time on the coding test then use this as an opportunity to explain what you would add.
 - How would you track down a performance issue in production? Have you ever had to do this?
 - Please describe yourself using JSON.
+
+
+# Boot application
+The most simple solution to use homestead vagrant box: https://laravel.com/docs/7.x/homestead or 
+docker homestead image: https://hub.docker.com/r/shincoder/homestead
+
+After installing homestead need to create .env file (based on .env.example) where is mandatory to set the following fields with appropriate values:
+- DB_CONNECTION
+- DB_HOST
+- DB_PORT
+- DB_DATABASE
+- DB_USERNAME
+- DB_PASSWORD
+
+And finally just run install.sh script. (e.g. ./install.sh)
