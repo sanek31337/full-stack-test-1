@@ -46,7 +46,7 @@ class CollectArticles extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle():void
     {
         try
         {
@@ -60,10 +60,11 @@ class CollectArticles extends Command
     }
 
     /**
+     * Load list of content from local json file
      * @return StdClass
      * @throws FileNotFoundException|JsonException
      */
-    private function getArticles()
+    private function getArticles() :stdClass
     {
         if (!Storage::disk('raw_json')->exists('feed.json'))
         {
@@ -82,7 +83,11 @@ class CollectArticles extends Command
         }
     }
 
-    private function saveArticles($articles)
+    /**
+     * Parse raw json and save normalized data to database
+     * @param $articles
+     */
+    private function saveArticles($articles) :void
     {
         $this->deleteOldData();
 
@@ -160,7 +165,7 @@ class CollectArticles extends Command
     /**
      * Purge previous articles to make sure that we have fresh articles and other data
      */
-    private function deleteOldData()
+    private function deleteOldData() :void
     {
         DB::table('article')->delete();
         DB::table('category')->delete();

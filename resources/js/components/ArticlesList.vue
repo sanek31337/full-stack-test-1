@@ -73,7 +73,9 @@
             this.getCategoriesList();
         },
         methods: {
-
+            /*
+                Load available unique categories from backend
+             */
             async getCategoriesList(){
                 let url = '/api/categories-list';
 
@@ -85,6 +87,10 @@
                     });
             },
 
+            /**
+             * Load articles from backend
+             * @returns {Promise<void>}
+             */
             async getArticlesList() {
 
                 this.loading = true;
@@ -130,6 +136,11 @@
                     });
             },
 
+            /**
+             * Preparing article structure
+             * @param data
+             * @returns {[]}
+             */
             prepareArticles(data){
 
                 let preparedArticles = [];
